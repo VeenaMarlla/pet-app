@@ -19,7 +19,7 @@ steps:
   displayName: 'Run a multi-line script'
 - task: Maven@3
   inputs:
-    mavenPomFile: 'spring-petclinic/pom.xml'
+    mavenPomFile: 'pom.xml'
     goals: 'clean test'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
