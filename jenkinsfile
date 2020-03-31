@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Code Checkout & Build') {
+             agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+       stages {
+            
+        stage('Code Checkout') {
+            steps {
+             
+            git credentialsId: 'Github-Veena', url: 'https://github.com/VeenaMarlla/spring-petclinic.git'
+        
+            }
+            
+        }
+        
+       
+        stage('Build') {
+           
+            steps {
+               
+                echo "$PWD"
+                sh "ls"
+                sh "mvn -version"
+                sh "mvn clean install -f pom.xml"
+                
+            }
+        }
+       }
+        }
+        
+    }
+}
