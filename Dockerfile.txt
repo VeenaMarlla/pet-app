@@ -2,10 +2,10 @@ FROM tomcat:8.5.29-jre8
 MAINTAINER Veena Marlla
 VOLUME /tmp
 WORKDIR /
-COPY target/spring-petclinic.jar spring-petclinic.jar
+COPY target/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar
 ENV JAVA_OPTS=""
 ENTRYPOINT ["java","-Dspring.profiles.active=docker-mysql","-jar" ,"/spring-petclinic.jar"]
-#CMD ["java", "-jar","-Dspring.profiles.active=mysql" ,"spring-petclinic.jar"]
+#CMD ["java", "-jar","-Dspring.profiles.active=mysql" ,"spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar"]
 
 
 
