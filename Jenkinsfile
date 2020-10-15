@@ -33,10 +33,40 @@ pipeline {
         }
 
         
+        stage('Code Analysis') {
 
+           steps {
+
+              withSonarQubeEnv('My Sonarqube Server') {
+
+                sh 'mvn sonar:sonar'
+
+              }
+
+            }
+
+           
+
+       }
+
+       stage("Quality Gate") {
+
+            steps {
+
+              timeout(time: 1, unit: 'HOURS') {
+
+                waitForQualityGate abortPipeline: true
+
+              }
+
+            }
+
+          }
+
+          
        
 
-        stage('Build') {
+        stage('Build & Unit test') {
 
            
 
@@ -68,37 +98,7 @@ pipeline {
 
        
 
-       stage('Code Analysis') {
-
-           steps {
-
-              withSonarQubeEnv('My Sonarqube Server') {
-
-                sh 'mvn sonar:sonar'
-
-              }
-
-            }
-
-           
-
-       }
-
-       stage("Quality Gate") {
-
-            steps {
-
-              timeout(time: 1, unit: 'HOURS') {
-
-                waitForQualityGate abortPipeline: true
-
-              }
-
-            }
-
-          }
-
-          
+       
 
        stage("Build Docker image") {
 
@@ -118,11 +118,11 @@ pipeline {
 
            steps {
 
-               sh "docker tag petclinic:1.0 veenam/petclinic:1.0"
+               sh "docker tag petclinic:1.0 veenam/petclinic:$BUILD_NUMBER"
 
                sh " docker login -u veenam -p veena123"
 
-               sh "docker push veenam/petclinic:1.0"
+               sh "docker push veenam/petclinic:$BUILD_NUMBER"
 
            }
 
@@ -140,7 +140,7 @@ pipeline {
 
 
 
-               sh "docker run -d -p 7070:8080 --name petclinic veenam/petclinic:1.0"
+               sh "docker run -d -p 7070:8080 --name petclinic veenam/petclinic:$BUILD_NUMBER"
 
                
 
