@@ -137,6 +137,28 @@
 	<groupId>com.microsoft.azure</groupId>
 	<artifactId>azure-webapp-maven-plugin</artifactId>
 	<version>1.7.0</version>
+	<configuration>
+		<schemaVersion>V2</schemaVersion>
+		<resourceGroup>veena</resourceGroup>
+		<appName>todo-web-application-mysql-in28minutes</appName>
+		<pricingTier>B1</pricingTier>
+		<region>centralus</region>
+		<runtime>
+			<os>linux</os>
+			<javaVersion>java8</javaVersion>
+			<webContainer>TOMCAT 9.0</webContainer>
+		</runtime>
+		<deployment>
+			<resources>
+				<resource>
+					<directory>${project.basedir}/target</directory>
+					<includes>
+						<include>*.jar</include>
+					</includes>
+				</resource>
+			</resources>
+		</deployment>
+	</configuration>
 </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
