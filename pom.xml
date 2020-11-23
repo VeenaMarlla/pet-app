@@ -140,9 +140,9 @@
 	<configuration>
 		<schemaVersion>V2</schemaVersion>
 		<resourceGroup>veena</resourceGroup>
-		<appName>todo-web-application-mysql-in28minutes</appName>
-		<pricingTier>B1</pricingTier>
-		<region>centralus</region>
+		<appName>petapp1</appName>
+		<pricingTier>Premium V2</pricingTier>
+		<region>Central US</region>
 		<runtime>
 			<os>linux</os>
 			<javaVersion>java8</javaVersion>
