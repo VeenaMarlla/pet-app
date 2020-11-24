@@ -60,8 +60,7 @@ stages:
         javaHomeOption: 'JDKVersion'
         jdkVersionOption: '1.11'
         mavenVersionOption: 'Default'
-    - task: SonarQubeAnalyze@4
-    - task: SonarQubePublish@4        
+        
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
